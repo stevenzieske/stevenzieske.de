@@ -53,7 +53,7 @@ pipeline {
 						remote.password = PASS
 						remote.allowAnyHosts = true
 						sshCommand remote: remote, command: "ls -a"
-						sshCommand remote: remote, command: "mv ./dist/assets/ ./assets/ && mv ./dist/index.html ./index.html && rmdir ./dist/"
+						sshCommand remote: remote, command: "mv ./dist/assets/ ./assets/ && mv ./dist/index.html ./index.html && mv ./dist/.htaccess ./.htaccess &&  rmdir ./dist/"
 					}
 				}
 			}
