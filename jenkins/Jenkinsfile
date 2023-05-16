@@ -41,7 +41,7 @@ pipeline {
 		stage("clean up") {
 
 			steps {
-				echo '[MOVING] Move files to root folder'
+				echo '[MOVING] Move files to root folder and delete empty dist folder'
 
 				withCredentials([usernamePassword(credentialsId: 'Homepage-Server', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
 					script {
@@ -53,7 +53,7 @@ pipeline {
 						remote.password = PASS
 						remote.allowAnyHosts = true
 						sshCommand remote: remote, command: "ls -a"
-						sshCommand remote: remote, command: "mv ./dist/assets/ ./assets/ && mv ./dist/index.html ./index.html && mv ./dist/.htaccess ./.htaccess &&  rmdir ./dist/"
+						sshCommand remote: remote, command: "mv ./dist/* . &&  rmdir ./dist/"
 					}
 				}
 			}

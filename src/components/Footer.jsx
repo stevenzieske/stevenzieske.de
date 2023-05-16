@@ -3,18 +3,18 @@ import React from 'react'
 function Footer() {
     return (
 
-        <footer className="shadow-2xl mt-4 border-t-gray-300">
-            <div className="w-full flex flex-col">
-                <ul className="flex justify-evenly py-6 sm:px-40 text-sm text-gray-500 dark:text-gray-400">
+        <footer className="">
+            <div className="flex flex-col w-full">
+                <ul className="flex py-6 text-sm text-gray-500 justify-evenly sm:px-40 dark:text-gray-400">
                     <li>
-                        <a href="/privacy-statement" className="mr-4 hover:text-cyan-500 md:mr-6">Data Privacy Policy</a>
+                        <a href="/legal-disclosure" className="hover:text-cyan-500 ">Legal Disclosure</a>
                     </li>
                     <li>
-                        <a href="/legal-disclosure" className="mr-4 hover:text-cyan-500 md:mr-6 ">Legal Disclosure</a>
+                        <a href="/privacy-statement" className="hover:text-cyan-500 ">Data Privacy Policy</a>
                     </li>
                 </ul>
-                <hr className="border-gray-200 dark:border-gray-200 mx-4" />
-                <span className=" mx-auto py-4 text-sm text-gray-500 dark:text-gray-400">Copyright © 2023 by Steven Zieske</span>
+                <hr className="mx-4 border-gray-200 dark:border-gray-200" />
+                <span className="py-4 mx-auto text-sm text-gray-500  dark:text-gray-400">Copyright © 2023 by Steven Zieske</span>
             </div>
         </footer>
 

@@ -10,17 +10,17 @@ jobs:
             - name: Use Node.js 17.x
               uses: actions/setup-node@v1
               with:
-                node-version: 17.x
+                  node-version: 17.x
             - run: npm install
             - run: npm run build --if-present
 
             - name: 📂 Sync files
               uses: sand4rt/ftp-deployer@v1.7
               with:
-                sftp: true
-                host: ${{ secrets.IONOS_SFTP_SERVER }}
-                port: 22
-                username: ${{ secrets.IONOS_SFTP_USERNAME }}
-                password: ${{ secrets.IONOS_SFTP_PASSWORD }}
-                
-                local_folder: dist
+                  sftp: true
+                  host: ${{ secrets.IONOS_SFTP_SERVER }}
+                  port: 22
+                  username: ${{ secrets.IONOS_SFTP_USERNAME }}
+                  password: ${{ secrets.IONOS_SFTP_PASSWORD }}
+
+                  local_folder: dist
