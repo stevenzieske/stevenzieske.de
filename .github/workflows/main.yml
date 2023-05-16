@@ -15,4 +15,5 @@ jobs:
                   username: ${{ secrets.IONOS_SFTP_USERNAME }}
                   password: ${{ secrets.IONOS_SFTP_PASSWORD }}
                   protocol: ftps
+                  port: 22
                   dry-run: true
