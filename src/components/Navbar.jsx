@@ -1,20 +1,37 @@
 import React, { useState } from 'react'
 
+import Dropdown from '../components/UIComponents/Dropdown'
+
 function Navbar() {
 
     const [navbar, setNavbar] = useState(false);
 
+    const dropdownElements = [
+        {
+            name: 'Contact',
+            href: '/contact',
+        },
+        {
+            name: 'Legal Disclosure',
+            href: '/legal-disclosure',
+        },
+        {
+            name: 'Data Privacy Policy',
+            href: '/privacy-statement',
+        },
+    ]
+
     return (
-        <nav className="w-full shadow">
+        <nav className="sticky top-0 z-30 w-full bg-white shadow-xl">
             <div className="justify-between px-10 mx-auto md:items-center md:flex lg:px-40">
                 <div>
-                    <div className="flex items-center justify-between py-3 md:py-5 md:block">
+                    <div className={`flex items-center justify-between ${navbar ? "pt-4" : "py-4"} md:py-5 md:block`}>
                         <a href="https://stevenzieske.de">
-                            <h2 className="text-xl">Steven Zieske</h2>
+                            <img className="w-10" src="/publicAssets/logo.png" alt="logo" />
                         </a>
                         <div className="md:hidden">
                             <button
-                                className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+                                className="p-2 rounded-md outline-none txt-color-normal focus:border-gray-400 focus:border"
                                 onClick={() => setNavbar(!navbar)}
                             >
                                 {navbar ? (
@@ -52,27 +69,20 @@ function Navbar() {
                 </div>
                 <div>
                     <div
-                        className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"
+                        className={`flex-1 justify-self-center pb-6 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"
                             }`}
                     >
-                        <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-                            <li className="text-gray-600">
-                                <a className="hover:text-cyan-500" href="/">Home</a>
+                        <hr className={`border-gray-600 py-3 ${navbar ? "block" : "hidden"
+                            }`} />
+                        <ul className="items-center justify-center space-y-6 md:flex md:space-x-6 md:space-y-0">
+                            <li className={`txt-color-normal`}>
+                                <a className="hover:text-[#083045]" href="/">Home</a>
                             </li>
-                            <li className="pl-10 text-gray-600">
-                                <a className="hover:text-cyan-500" href="#">Skills</a>
+                            <li className={`txt-color-normal ${navbar ? "pl-4" : ""}`}>
+                                <a className="hover:text-[#083045]" href="/blog">Blog</a>
                             </li>
-                            <li className="pl-10 text-gray-600">
-                                <a className="hover:text-cyan-500" href="#">Career</a>
-                            </li>
-                            <li className="pl-10 text-gray-600">
-                                <a className="hover:text-cyan-500" href="#">Projects</a>
-                            </li>
-                            <li className="text-gray-600">
-                                <a className="hover:text-cyan-500" href="/privacy-statement">Data Privacy Policy</a>
-                            </li>
-                            <li className="text-gray-600">
-                                <a className="hover:text-cyan-500" href="/legal-disclosure">Legal Disclosure</a>
+                            <li>
+                                <Dropdown dropdownText='Contact' dropdownElements={dropdownElements} />
                             </li>
                         </ul>
                     </div>

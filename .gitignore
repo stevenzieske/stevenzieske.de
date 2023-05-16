@@ -1,3 +1,5 @@
+.unlighthouse
+.env
 # Logs
 logs
 *.log

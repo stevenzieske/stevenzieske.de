@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .txt-color-normal {
+    @apply text-gray-600 dark:text-[#F7F1FF];
+  }
+}
