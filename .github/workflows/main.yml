@@ -17,7 +17,7 @@ jobs:
               uses: actions/upload-artifact@v3
               with:
                   name: stevenzieske.de-dist
-                  path: dist
+                  path: dist/
                   retention-days: 1
 
     Deploy:
