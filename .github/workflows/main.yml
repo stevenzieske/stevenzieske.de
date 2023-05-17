@@ -1,34 +1,36 @@
 on: push
 name: 🚀 Deploy website on push
 jobs:
-    Build:
+    build:
+        name: 🛠️ Build
         runs-on: ubuntu-latest
         steps:
             - name: 🚚 Get latest code
               uses: actions/checkout@v3
-            - name: Setup Node.js 17.x
+            - name: 🖥️ Setup Node.js 17.x
               uses: actions/setup-node@v1
               with:
                   node-version: 17.x
             - run: |
                   npm install
                   npm run build --if-present
-            - name: Archive production artifact
+            - name: ⏫ Archive production artifact
               uses: actions/upload-artifact@v3
               with:
                   name: stevenzieske.de-dist
                   path: dist/
                   retention-days: 1
 
-    Deploy:
-        needs: Build
+    deploy:
+        name: 🚀 Deploy
+        needs: build
         runs-on: ubuntu-latest
         steps:
-            - name: Download production artifact from Build job
+            - name: ⏬ Download production artifact from Build job
               uses: actions/download-artifact@v3
               with:
                   name: stevenzieske.de-dist
-            - name: 📂 Sync files
+            - name: 🌌 Sync files
               uses: sand4rt/ftp-deployer@v1.7
               with:
                   sftp: true
@@ -37,6 +39,6 @@ jobs:
                   username: ${{ secrets.IONOS_SFTP_USERNAME }}
                   password: ${{ secrets.IONOS_SFTP_PASSWORD }}
 
-                  local_folder: dist
+                  local_folder: ./*
                   cleanup: true
                   include: '["*", "**/*", ".*"]'
