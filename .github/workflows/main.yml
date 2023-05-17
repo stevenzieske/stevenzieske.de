@@ -39,6 +39,6 @@ jobs:
                   username: ${{ secrets.IONOS_SFTP_USERNAME }}
                   password: ${{ secrets.IONOS_SFTP_PASSWORD }}
 
-                  local_folder: ./*
+                  local_folder: ./
                   cleanup: true
                   include: '["*", "**/*", ".*"]'
