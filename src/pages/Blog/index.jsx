@@ -4,7 +4,7 @@ import { TypeAnimation } from 'react-type-animation';
 
 import BlogCard from './BlogCard'
 
-const graphcms = new GraphQLClient(import.meta.env.VITE_GRAPHCMS_URL_ENDPOINT)
+const graphcms = new GraphQLClient("https://eu-central-1-shared-euc1-02.cdn.hygraph.com/content/clhb0fum01smx01tahj72h6fv/master")
 
 const QUERY = gql`
     {
