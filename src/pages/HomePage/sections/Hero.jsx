@@ -36,7 +36,7 @@ function Hero() {
                             <a href="https://github.com/stevenzieske" target="_blank">
                                 <AiFillGithub className="text-4xl hover:text-[#083045] transform transition duration-300 hover:scale-125" />
                             </a>
-                            <a href="#">
+                            <a href="https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3BC4jESauiSKaRL5W%2B7ueHeg%3D%3D" target="_blank">
                                 <AiFillLinkedin className="text-4xl hover:text-[#083045] transform transition duration-300 hover:scale-125" />
                             </a>
                             <a href="mailto:steven.hz@outlook.de">
