@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { GraphQLClient, gql } from 'graphql-request'
+import { TypeAnimation } from 'react-type-animation';
 
 import BlogCard from './BlogCard'
 
@@ -12,6 +13,7 @@ const QUERY = gql`
             title
             shortDescription
             tags
+            githubUrl
             coverPhoto{
                 url
             }
@@ -21,53 +23,24 @@ const QUERY = gql`
 
 function Blog() {
 
-    // let [blogPosts, setBlogPosts] = useState([])
+    const [blogPosts, setBlogPosts] = useState([])
+    const [isLoading, setIsLoading] = useState(true);
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //       try {
-    //         const blogPosts = await graphcms.request(QUERY);
-    //         setBlogPosts(blogPosts.blogPosts);
-    //         console.log(blogPosts.blogPosts);
-    //       } catch (error) {
-    //         console.error('Fehler beim Abrufen der Daten:', error);
-    //       }
-    //     };
-
-    //     fetchData();
-    //   }, []);
-
-    const blogPosts = [
-        {
-            "datePublished": "2023-05-05",
-            "id": "clhb0sore54eh0bw1h7mpvlir",
-            "slug": "this-is-the-first-test-post",
-            "title": "This is the first test Post",
-            "tags": [
-                "React",
-                "Tailwind CSS"
-            ],
-            "content": {
-                "html": "<h1>This is Post 1</h1><p>This is the content </p>"
-            },
-            "coverPhoto": {
-                "url": "https://media.graphassets.com/2TtQpQLrRcK7gWkfQHbO"
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const blogPosts = await graphcms.request(QUERY);
+                setBlogPosts(blogPosts.blogPosts);
+                console.log(blogPosts.blogPosts);
+                setIsLoading(false);
+            } catch (error) {
+                console.error('Fehler beim Abrufen der Daten:', error);
+                setIsLoading(false);
             }
-        },
-        {
-            "datePublished": "2023-05-05",
-            "id": "clhb0w1cg574e0aupvs9cgttk",
-            "slug": "this-is-the-second-test-post",
-            "title": "This is the second test Post",
-            "tags": [],
-            "content": {
-                "html": "<h1>This is post 2</h1><p>This is the content</p>"
-            },
-            "coverPhoto": {
-                "url": "https://media.graphassets.com/L4WvmXGKTwW25nYRpLZq"
-            }
-        }
-    ]
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <div className="container flex flex-col w-10/12 mx-auto sm:w-8/12">
@@ -75,21 +48,40 @@ function Blog() {
                 Blog
             </h3>
             <p className="leading-8 text-gray-800 text-md txt-color-normal">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore voluptatum sunt aspernatur quia consequuntur amet voluptatibus, aliquam tenetur facilis necessitatibus, voluptas omnis ipsum ratione, dolore maiores at veniam? Ea, provident.
+                If you click on the following projects you will find a description of the project, you can read the block article, go to the live demo or the GitHub Repo.
             </p>
             <div className="flex flex-wrap gap-6">
-                {blogPosts.map((blogPost, index) => {
-                    return (
-                        <BlogCard
-                            key={index}
-                            title={blogPost.title}
-                            description={blogPost.shortDescription}
-                            coverPhotoUrl={blogPost.coverPhoto.url}
-                            tags={blogPost.tags}
-                            hrefBlogPost={`/posts/${blogPost.slug}`}
-                        />
-                    )
-                })}
+                {isLoading ? <span className='text-gray-600 text-xl py-4 flex'>
+                    <p>Loading</p>
+                    <TypeAnimation
+                        sequence={[
+                            '.',
+                            1000,
+                            '..',
+                            1000,
+                            '...',
+                            1000,
+                        ]}
+                        cursor={false}
+                        repeat={Infinity}
+                    />
+                </span> :
+                    !blogPosts.length
+                        ? <p className='text-gray-600 text-xl py-4'>Oops... there are no posts to display</p>
+                        : blogPosts.map((blogPost, index) => {
+                            return (
+                                <BlogCard
+                                    key={index}
+                                    title={blogPost.title}
+                                    description={blogPost.shortDescription}
+                                    coverPhotoUrl={blogPost.coverPhoto.url}
+                                    tags={blogPost.tags}
+                                    hrefBlogPost={`/posts/${blogPost.slug}`}
+                                    hrefGitHubURL={blogPost.githubUrl}
+                                />
+                            )
+                        })
+                }
             </div>
         </div>
     )
