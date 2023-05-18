@@ -14,10 +14,6 @@ function Hero() {
                             sequence={[
                                 'Student',
                                 1000,
-                                'Programmer',
-                                1000,
-                                'Administrator',
-                                1000,
                                 'Developer',
                                 2000,
                             ]}

@@ -11,7 +11,6 @@ function SkillsCards() {
         { title: 'Express', icon: 'skill-icons:expressjs-dark', link: 'https://expressjs.com/' },
         { title: 'MongoDB', icon: 'skill-icons:mongodb', link: 'https://www.mongodb.com/' },
         { title: 'Docker', icon: 'skill-icons:docker', link: 'https://www.docker.com/' },
-        { title: 'Raspberry Pi', icon: 'skill-icons:raspberrypi-dark', link: 'https://www.raspberrypi.org/' },
     ]
 
     return (

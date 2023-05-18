@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { AiFillGithub } from 'react-icons/ai'
 
 function BlogCard({
     title = "defaultTitle",
     description = "defaultDescription",
     coverPhotoUrl = "",
     tags = ["tag1", "tag2"],
-    hrefBlogPost = "/",
-    hrefLiveDemo = "/",
+    hrefBlogPost = "",
+    hrefLiveDemo = "",
+    hrefGitHubURL = "",
 }) {
     const [isFlipped, setIsFlipped] = useState(false);
 
@@ -31,7 +33,7 @@ function BlogCard({
                     <div className="flex flex-col justify-between h-full px-4 pt-3 pb-2">
                         <p className="">{description}</p>
                         <div>
-                            <div className="flex">
+                            <div className="flex items-center">
                                 {tags.map((tag, index) => {
                                     return (
                                         <span
@@ -42,6 +44,9 @@ function BlogCard({
                                         </span>
                                     );
                                 })}
+                                <a href={hrefGitHubURL} target="_blank">
+                                    <AiFillGithub className="text-3xl hover:text-[#083045] transform transition duration-300 hover:scale-125" />
+                                </a>
                             </div>
                             <div className="flex justify-between">
                                 <a

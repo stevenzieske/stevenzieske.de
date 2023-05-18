@@ -13,6 +13,7 @@ const QUERY = gql`
             title
             shortDescription
             tags
+            githubUrl
             coverPhoto{
                 url
             }
@@ -47,7 +48,7 @@ function Blog() {
                 Blog
             </h3>
             <p className="leading-8 text-gray-800 text-md txt-color-normal">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore voluptatum sunt aspernatur quia consequuntur amet voluptatibus, aliquam tenetur facilis necessitatibus, voluptas omnis ipsum ratione, dolore maiores at veniam? Ea, provident.
+                If you click on the following projects you will find a description of the project, you can read the block article, go to the live demo or the GitHub Repo.
             </p>
             <div className="flex flex-wrap gap-6">
                 {isLoading ? <span className='text-gray-600 text-xl py-4 flex'>
@@ -66,7 +67,7 @@ function Blog() {
                     />
                 </span> :
                     !blogPosts.length
-                        ? <p className='text-gray-600 text-xl py-4'>Oops... there are no Posts to display</p>
+                        ? <p className='text-gray-600 text-xl py-4'>Oops... there are no posts to display</p>
                         : blogPosts.map((blogPost, index) => {
                             return (
                                 <BlogCard
@@ -76,6 +77,7 @@ function Blog() {
                                     coverPhotoUrl={blogPost.coverPhoto.url}
                                     tags={blogPost.tags}
                                     hrefBlogPost={`/posts/${blogPost.slug}`}
+                                    hrefGitHubURL={blogPost.githubUrl}
                                 />
                             )
                         })
